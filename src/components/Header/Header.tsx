@@ -85,7 +85,7 @@ const Header = () => {
             <img
               src={`https://www.philhealth.gov.ph/images/bagong_pilipinas_logo3.png`}
               alt={'PhilHealth'}
-              loading="lazy"
+              loading="lazy"  
             />
           </Toolbar>
         </div>
