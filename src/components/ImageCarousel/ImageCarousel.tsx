@@ -27,6 +27,7 @@ const ImageCarousel = () => {
 
   return (
     <AliceCarousel 
+    data-aos="zoom-in"
         mouseTracking items={items} 
         autoPlay={true} 
         autoPlayInterval={2400} 

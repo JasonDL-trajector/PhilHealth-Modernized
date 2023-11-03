@@ -1,7 +1,5 @@
 import * as dotenv from 'dotenv'
 import * as core from "express-serve-static-core";
-import {sampleData} from './data/datasource';
-import articles from './data/articles'
 import { getConnection } from './data/db';
 
 require("dotenv").config();
@@ -19,8 +17,21 @@ export const startServer = (app: core.Express) => {
         getConnection().then(async (db)=>{
            const articlesC = await db.collection("articles").find({});
            const articles = await articlesC.toArray();
-           console.log(articles)
            res.status(200).send(articles);
+        })
+     })
+     app.get("/links/get", (req, res)=>{
+        getConnection().then(async (db)=>{
+           const linksC = await db.collection("links").find({});
+           const links = await linksC.toArray();
+           res.status(200).send(links);
+        })
+     })
+     app.get("/links-banner/get", (req, res)=>{
+        getConnection().then(async (db)=>{
+           const linksBannerC = await db.collection("linksBanner").find({});
+           const linksBanner = await linksBannerC.toArray();
+           res.status(200).send(linksBanner);
         })
      })
 }

@@ -9,11 +9,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom'
 
-const pages = ['About Us', 'Members', 'Our Partners', 'Online Services', 'Downloads'];
+const pages = ['Home', 'About Us', 'Members', 'Our Partners', 'Online Services', 'Downloads'];
+const routes = ['/', '/about-us']
   
 const Navbar = () => {
 
+  const navigate = useNavigate();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -24,6 +27,18 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
 
+  const navbarStyles = {
+    my: 2, 
+    color: 'white', 
+    display: 'block', 
+    fontFamily: 'Poppins', 
+    ":hover": { 
+      backgroundColor: "white",
+      color: "rgb(20,59,10)",
+      transform: "scale(1.2)",
+      transition: "transform .3s"
+    } 
+  }
   return (
     <AppBar position="static" sx={{ backgroundColor: 'rgb(20,59,10)'}}>
      <Container maxWidth="xl">
@@ -83,21 +98,21 @@ const Navbar = () => {
           >
             PHILHEALTH
           </Typography>
+          
           <Box sx={{ 
             flexGrow: 1, 
             display: { xs: 'none', md: 'flex' },
             justifyContent: 'center', 
             gap: '3rem'
             }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            
+              <Button key={pages[0]} onClick={() => navigate(routes[0])} sx={navbarStyles}> {pages[0]} </Button>
+              <Button key={pages[1]} onClick={() => navigate(routes[1])} sx={navbarStyles}> {pages[1]} </Button>
+              <Button key={pages[2]} onClick={() => navigate(routes[0])} sx={navbarStyles}> {pages[2]} </Button>
+              <Button key={pages[3]} onClick={() => navigate(routes[0])} sx={navbarStyles}> {pages[3]} </Button>
+              <Button key={pages[4]} onClick={() => navigate(routes[0])} sx={navbarStyles}> {pages[4]} </Button>
+              <Button key={pages[5]} onClick={() => navigate(routes[0])} sx={navbarStyles}> {pages[5]} </Button>
+           
           </Box>
 
         </Toolbar>

@@ -46,7 +46,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      width: '12ch',
+      width: '20ch',
       '&:focus': {
         width: '20ch',
       },
@@ -76,12 +76,22 @@ const Header = () => {
         justifyContent: 'space-between'
       }}>
         <div style={{ marginLeft: '8%'}}>
-          <Toolbar variant="dense" sx={{display: 'flex', gap: '2rem'}}>
-            <img
-              src={`https://www.philhealth.gov.ph/images/ph_logo0.png`}
-              alt={'PhilHealth'}
-              loading="lazy"
-            />
+          <Toolbar variant="dense" sx={{display: 'flex', gap: '2rem', py: 1}}>
+            <a href='/'>
+              <img
+                src={`https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Philippine_Health_Insurance_Corporation_%28PhilHealth%29.svg/1200px-Philippine_Health_Insurance_Corporation_%28PhilHealth%29.svg.png`}
+                width={220}
+                height={80}
+                
+                alt={'PhilHealth'}
+                loading="lazy"
+              />
+            </a>
+          </Toolbar>
+        </div>
+        
+        <div >
+          <Toolbar variant="dense">
             <img
               src={`https://www.philhealth.gov.ph/images/bagong_pilipinas_logo3.png`}
               alt={'PhilHealth'}
@@ -102,6 +112,7 @@ const Header = () => {
               </SearchIconWrapper>
               <StyledInputBase
                 placeholder="Search…"
+                sx={{ fontFamily: 'Poppins' }}
                 inputProps={{ 'aria-label': 'search' }}
               />
             </Search>
@@ -109,7 +120,7 @@ const Header = () => {
             <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar src={`https://lh3.googleusercontent.com/Ryg5ih-fOWbpEGDpbJYJz5RTq3_28Tvo2h3JQRCdiz16lw5ghitDMN6hcWA57g0d6_8VOqQYcCemRBOfZGQA64ZKkFOn71zuF1LDsXwCh4ywF-_z6VqxbBqmbQvK_-PWfZcztxDd1WDTEEUHX6GdP60`} />
+                <Avatar src={`https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg`} />
                 
               </IconButton>
             </Tooltip>
