@@ -1,5 +1,6 @@
-import AliceCarousel from "react-alice-carousel";
-import 'react-alice-carousel/lib/alice-carousel.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from 'react-responsive-carousel';
+
 import './ImageCarousel.css'; 
 
 const handleDragStart = (e:any) => e.preventDefault();
@@ -17,7 +18,6 @@ const items = [
     <img src={`https://www.philhealth.gov.ph/images/callback_33.jpg`} onDragStart={handleDragStart} alt="presentation" />,
     <img src={`https://www.philhealth.gov.ph/irm/images/irm_bnnr16.jpg`} onDragStart={handleDragStart} alt="presentation" />,
     <img src={`https://www.philhealth.gov.ph/images/studies_bnnr1.jpg`} onDragStart={handleDragStart} alt="presentation" />,
-    <img src={`https://www.philhealth.gov.ph/images/studies_bnnr1.jpg`} onDragStart={handleDragStart} alt="presentation" />,
     <img src={`https://www.philhealth.gov.ph/covid/images/covid_bnnr.jpg`} onDragStart={handleDragStart} alt="presentation" />,
     <img src={`https://www.philhealth.gov.ph/images/unicef_zben_v1.jpg`} onDragStart={handleDragStart} alt="presentation" />
   ];
@@ -25,15 +25,26 @@ const items = [
 
 const ImageCarousel = () => {
 
-  return (
-    <AliceCarousel 
-    data-aos="zoom-in"
-        mouseTracking items={items} 
-        autoPlay={true} 
-        autoPlayInterval={2400} 
-        infinite={true} 
-        disableButtonsControls={true}
-    />
+  return ( 
+  <div style={{marginTop: '10rem', marginBottom: '-1rem'}}>
+    <Carousel 
+      autoPlay={true} 
+      emulateTouch={true} 
+      infiniteLoop={true} 
+      interval={3000} 
+      transitionTime={1500} 
+      showThumbs={false} 
+      showIndicators={true}
+    >
+        {items.map((item, index) => (
+          <div key={index}>
+            {item}
+          </div>
+        ))}
+
+      </Carousel>
+    </div >
+
   )
 }
 

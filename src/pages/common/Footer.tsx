@@ -2,6 +2,9 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom'
+
+
 
 const footerLinks = [
     {
@@ -64,6 +67,9 @@ const footerSocials = [
 
 
 const Footer = () => {
+    
+  const navigate = useNavigate();
+  
   return (
     <AppBar position="static" sx={{ backgroundColor: 'rgb(20,59,10)'}}>
 
@@ -71,7 +77,19 @@ const Footer = () => {
 
             <Grid md={7} >
                 <Box pt={10} px={8} width={250}>
-                    <Typography variant='h2' data-aos="fade-up" sx={{ fontFamily: 'Poppins', fontSize: 50, fontWeight: 600, borderBottom: '3px solid white'}}>PhilHealth</Typography>
+                    <a style={{ cursor: 'pointer'}} onClick={() => navigate('/')}>
+                        <Typography variant='h2' 
+                                    data-aos="fade-up" 
+                                    sx={{ 
+                                        fontFamily: 'Poppins', 
+                                        fontSize: 50, 
+                                        color: 'white', 
+                                        fontWeight: 600, 
+                                        borderBottom: '3px solid white'
+                                    }}>
+                                PhilHealth
+                        </Typography>
+                    </a>
                 </Box>
 
                 <Box pt={5} px={3} sx={{ transform: 'scale(.8)'}}>

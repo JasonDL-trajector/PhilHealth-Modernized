@@ -1,13 +1,13 @@
-import Header from '../components/Header/Header';
-import Navbar from '../components/Navbar/Navbar';
-import Footer from '../components/Footer/Footer';
-import ScrollButton from '../components/ScrollToTop/ScrollButton'; 
+import Header from '../common/Header';
+import Navbar from '../common/Navbar';
+import Footer from '../common/Footer';
+import ScrollButton from '../common/ScrollToTop/ScrollButton'; 
 
 const appStyle = {
   backgroundImage: 'url(https://www.philhealth.gov.ph/images/bg_green.jpg)'
 }
 
-const AbouUs = () => {
+const OurPartners = () => {
   return (
     <div className='App'
     style={appStyle}>
@@ -36,4 +36,4 @@ const AbouUs = () => {
   );
 }
 
-export default AbouUs;
+export default OurPartners;

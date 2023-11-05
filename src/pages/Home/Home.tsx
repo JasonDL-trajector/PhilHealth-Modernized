@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { Grid } from '@mui/material';
-import Hero from '../components/Hero/Hero';
-import Header from '../components/Header/Header';
-import ImageCarousel from '../components/ImageCarousel/ImageCarousel';
-import Navbar from '../components/Navbar/Navbar';
-import HeroTwo from '../components/Hero/HeroTwo';
-import Links from '../components/Links/Links';
-import { Article, getArticles } from '../services/articles'
-import Footer from '../components/Footer/Footer';
-import ScrollButton from '../components/ScrollToTop/ScrollButton'; 
+import Hero from './components/Hero/Hero';
+import Header from '../common/Header';
+import ImageCarousel from './components/ImageCarousel/ImageCarousel';
+import Navbar from '../common/Navbar';
+import HeroTwo from './components/Hero/HeroTwo';
+import Links from './components/Links/Links';
+import { Article, getArticles } from '../../services/articles'
+import Footer from '../common/Footer';
+import ScrollButton from '../common/ScrollToTop/ScrollButton'; 
 
 import Aos from "aos"
 import 'aos/dist/aos.css'
@@ -20,7 +20,7 @@ const appStyle = {
 const Home = () => {
 
   useEffect(()=>{
-    Aos.init({duration: 2000})
+    Aos.init({duration: 1500})
 }, [])
 
   const [articles, setArticles] = useState<Array<Article>>([]);

@@ -4,6 +4,7 @@ import { Button } from './Styles';
 
 const ScrollButton: React.FC = () => {
   const [visible, setVisible] = useState(false);
+  const [color, setColor] = useState(false);
 
   const toggleVisible = () => {
     const scrolled = document.documentElement.scrollTop;
@@ -14,20 +15,37 @@ const ScrollButton: React.FC = () => {
     }
   };
 
+  const toggleColor = () => {
+    const scrolled = document.documentElement.scrollTop;
+    if (scrolled > 300) {
+      setVisible(true);
+    } else if (scrolled <= 300) {
+      setVisible(false);
+    }
+
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+    if (scrolled >= 0.9 * (scrollHeight - clientHeight)) {
+      setColor(true);
+    } else {
+      setColor(false);
+    }
+  };
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
-      /* you can also use 'auto' behavior
-         in place of 'smooth' */
     });
   };
 
   useEffect(() => {
     window.addEventListener('scroll', toggleVisible);
+    window.addEventListener('scroll', toggleColor);
 
     return () => {
       window.removeEventListener('scroll', toggleVisible);
+      window.removeEventListener('scroll', toggleColor);
     };
   }, []);
 
@@ -35,7 +53,10 @@ const ScrollButton: React.FC = () => {
     <Button>
       <FaArrowAltCircleUp
         onClick={scrollToTop}
-        style={{ display: visible ? 'inline' : 'none' }}
+        style={{
+          display: visible ? 'inline' : 'none',
+          color: color ? 'white' : 'rgb(20,59,10)',
+        }}
       />
     </Button>
   );

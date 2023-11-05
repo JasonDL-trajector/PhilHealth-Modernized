@@ -9,7 +9,11 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
 const appBarStyle = {
-  backgroundColor: 'white'
+  top: 0,
+  left: 0,
+  right: 0,
+  backgroundColor: 'white',
+  zIndex: 1000
 }
 
 const Search = styled('div')(({ theme }) => ({
@@ -69,7 +73,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="static" style={appBarStyle}>
+    <AppBar position="fixed" className='header' style={appBarStyle}>
       <div style={{
         display: 'flex',
         flexDirection: 'row',

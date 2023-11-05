@@ -1,7 +1,7 @@
 import { Box, Grid, Typography } from "@mui/material";
 import { useState, useEffect } from 'react'
-import { LinksURL, getLinks } from '../../services/links'
-import { LinksBanner, getLinksBanner } from '../../services/links'
+import { LinksURL, getLinks } from '../../../../services/links'
+import { LinksBanner, getLinksBanner } from '../../../../services/links'
 
 const anchorStyles = {
   ":hover": { 
@@ -20,7 +20,7 @@ const imagesStyles = {
 }
 
 const labelStyles = {
-  fontSize: 32,
+  fontSize: 25,
   fontFamily: 'Poppins',
   fontWeight: 400,
   textAlign: 'left',
@@ -68,7 +68,7 @@ const Links = () => {
             {linksBanner.slice(0, 2).map((link, index) => (
               <Box key={index} sx={anchorStyles}>
                 <a href={link.links} target="_blank" rel="noreferrer">
-                  <img data-aos="zoom-in" src={link.image} style={imagesStyles} alt={link.image} />
+                  <img data-aos="zoom-in-up" src={link.image} style={imagesStyles} alt={link.image} />
                 </a>
               </Box>
             ))}
@@ -79,7 +79,7 @@ const Links = () => {
             {linksBanner.slice(2, 4).map((link, index) => (
               <Box key={index} sx={anchorStyles}>
                 <a href={link.links} target="_blank" rel="noreferrer">
-                  <img data-aos="zoom-in" src={link.image} style={imagesStyles} alt={link.image} />
+                  <img data-aos="zoom-in-up" src={link.image} style={imagesStyles} alt={link.image} />
                 </a>
               </Box>
             ))}
@@ -90,7 +90,7 @@ const Links = () => {
             {linksBanner.slice(4, 5).map((link, index) => (
               <Box key={index} sx={anchorStyles}>
                 <a href={link.links} target="_blank" rel="noreferrer">
-                  <img data-aos="zoom-in" src={link.image} style={imagesStyles} alt={link.image} />
+                  <img data-aos="zoom-in-up" src={link.image} style={imagesStyles} alt={link.image} />
                 </a>
               </Box>
             ))}
