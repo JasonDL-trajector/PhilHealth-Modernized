@@ -10,8 +10,35 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { useNavigate } from 'react-router-dom'
+import { Link } from '@mui/material';
 
-const pages = ['Home', 'About Us', 'Members', 'Our Partners', 'Online Services', 'Downloads'];
+const pages = [
+  {
+    title: 'Home',
+    url: '/'
+  },
+  {
+    title: 'About Us',
+    url: '/about-us'
+  },
+  {
+    title: 'Members',
+    url: '/members'
+  },
+  {
+    title: 'Our Partners',
+    url: '/our-partners'
+  },
+  {
+    title: 'Online Services',
+    url: '/online-services'
+  },
+  {
+    title: 'Downloads',
+    url: '/downloads'
+  },
+];
+
 const routes = ['/', '/about-us', '/members', '/our-partners', '/online-services', '/downloads']
   
 const Navbar = () => {
@@ -81,8 +108,9 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                
+                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
+                  <Link href={page.url} textAlign="center" fontFamily={'Poppins'}>{page.title}</Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -97,11 +125,11 @@ const Navbar = () => {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              fontFamily: 'Poppins'
             }}
           >
             PHILHEALTH
@@ -114,12 +142,12 @@ const Navbar = () => {
             gap: '3rem'
             }}>
             
-              <Button key={pages[0]} onClick={() => navigate(routes[0])} sx={navbarStyles}> {pages[0]} </Button>
-              <Button key={pages[1]} onClick={() => navigate(routes[1])} sx={navbarStyles}> {pages[1]} </Button>
-              <Button key={pages[2]} onClick={() => navigate(routes[2])} sx={navbarStyles}> {pages[2]} </Button>
-              <Button key={pages[3]} onClick={() => navigate(routes[3])} sx={navbarStyles}> {pages[3]} </Button>
-              <Button key={pages[4]} onClick={() => navigate(routes[4])} sx={navbarStyles}> {pages[4]} </Button>
-              <Button key={pages[5]} onClick={() => navigate(routes[5])} sx={navbarStyles}> {pages[5]} </Button>
+              <Button key={pages[0].title} onClick={() => navigate(routes[0])} sx={navbarStyles}> {pages[0].title} </Button>
+              <Button key={pages[1].title} onClick={() => navigate(routes[1])} sx={navbarStyles}> {pages[1].title} </Button>
+              <Button key={pages[2].title} onClick={() => navigate(routes[2])} sx={navbarStyles}> {pages[2].title} </Button>
+              <Button key={pages[3].title} onClick={() => navigate(routes[3])} sx={navbarStyles}> {pages[3].title} </Button>
+              <Button key={pages[4].title} onClick={() => navigate(routes[4])} sx={navbarStyles}> {pages[4].title} </Button>
+              <Button key={pages[5].title} onClick={() => navigate(routes[5])} sx={navbarStyles}> {pages[5].title} </Button>
           
           </Box>
 

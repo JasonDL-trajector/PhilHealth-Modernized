@@ -2,6 +2,7 @@ export interface Article {
   title: string;
   body: string;
   images: string;
+  links: string;
 }
 
 export const getArticles = async () => {

@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from './pages/Home';
-import AboutUs from './pages/AboutUs';
-import Members from './pages/Members';
-import OurPartners from './pages/OurPartners';
-import OnlineServices from './pages/OnlineServices';
-import Downloads from './pages/Downloads';
+import Home from './pages/Home/Home';
+import AboutUs from './pages/AboutUs/AboutUs';
+import Members from './pages/Members/Members';
+import OurPartners from './pages/OurPartners/OurPartners';
+import OnlineServices from './pages/OnlineServices/OnlineServices';
+import Downloads from './pages/Downloads/Downloads';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

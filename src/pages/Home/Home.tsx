@@ -50,19 +50,19 @@ const Home = () => {
       <div>
         <Grid container>
           { articles[0] && 
-            <Hero title={articles[0].title} body={articles[0].body} images={articles[0].images} />
+            <Hero title={articles[0].title} body={articles[0].body} images={articles[0].images} links={articles[0].links} />
           }
 
           { articles[1] && 
-            <HeroTwo title={articles[1].title} body={articles[1].body} images={articles[1].images} />
+            <HeroTwo title={articles[1].title} body={articles[1].body} images={articles[1].images} links={articles[1].links} />
           }
 
           { articles[2] && 
-            <Hero title={articles[2].title} body={articles[2].body} images={articles[2].images} />
+            <Hero title={articles[2].title} body={articles[2].body} images={articles[2].images} links={articles[2].links} />
           }
           
           { articles[3] && 
-            <HeroTwo title={articles[3].title} body={articles[3].body} images={articles[3].images} />
+            <HeroTwo title={articles[3].title} body={articles[3].body} images={articles[3].images} links={articles[3].links} />
           }
           
         </Grid>

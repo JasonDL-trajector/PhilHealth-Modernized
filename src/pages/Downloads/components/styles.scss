@@ -1,0 +1,45 @@
+body {
+    padding: 50px 0;
+    background: #eee;
+    font-family: 'OpenSans-Light', Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+  
+  .content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 7px;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+  
+  }
+  
+  /* Simple show/hide */
+  // .list-group-item {
+  //   .card-body {
+  //     display: none;
+  //   }
+  //   &.is-expanded {
+  //     .card-body {
+  //       display: block;
+  //     }
+  //   }
+  // }
+  
+  /* BEST - JS calculated height */
+  .list-group-item {
+    .card-title {
+      cursor: pointer;
+    }
+    .card-collapse {
+      overflow: hidden;
+      transition: height 0.3s ease-out;
+    }
+    // .card-body {
+    //   border: none !important; // why do we need this? (doesn't seem to change anything)
+    // }
+    h2 {margin-top: 5px !important;}
+  }

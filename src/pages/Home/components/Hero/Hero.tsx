@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Link, Typography } from "@mui/material";
 
 interface HeroProps {
   title?: string;
@@ -6,6 +6,7 @@ interface HeroProps {
   header?: string;
   body?: string;
   images?: string;
+  links?: string;
 }
 
 const Hero = (props: HeroProps) => {
@@ -29,14 +30,14 @@ const Hero = (props: HeroProps) => {
           )}
           <Box mt={10} sx={{ display: 'flex', flexDirection: 'column', gap: '3rem'}}>
           {props.title && (
-            <Typography variant="h6" data-aos="fade-up-right" sx={{
+            <Link href={props.links} variant="h6" data-aos="fade-up-right" sx={{
               fontFamily: 'Poppins',
               fontSize: '3rem',
               fontWeight: "bold",
               color: "rgb(20,59,10)"
             }}>
               {props.title}
-            </Typography>
+            </Link>
           )}
           
           {props.body && (

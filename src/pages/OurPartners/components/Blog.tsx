@@ -7,12 +7,12 @@ import Main from './Main';
 import { post } from './blog-posts';
 
 const mainFeaturedPost = {
-  title: 'Contact Information',
+  title: '',
   description:
     "",
-  image: 'https://www.philhealth.gov.ph/members/images/mbrs_bnnr.jpg',
-  imageText: 'Contact Information',
-  linkText: 'Regional Offices ->',
+  image: 'https://www.philhealth.gov.ph/partners/providers/images/hcp_bnnr.jpg',
+  imageText: '',
+  linkText: '',
 };
 
 const posts = [post];
