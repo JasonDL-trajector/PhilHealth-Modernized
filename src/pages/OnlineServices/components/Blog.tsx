@@ -23,7 +23,7 @@ const defaultTheme = createTheme();
 export default function Blog() {
   return (
 
-    <div style={{ backgroundColor: 'white', paddingTop: '5rem', margin: '20px'}}>
+    <div style={{ backgroundColor: 'white', paddingTop: '5rem', margin: '20px', borderRadius: '1rem'}}>
        <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
         

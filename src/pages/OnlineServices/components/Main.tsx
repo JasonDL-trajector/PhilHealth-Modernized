@@ -6,12 +6,32 @@ import Markdown from './Markdown';
 import './markdown.css';
 import { Box, Link } from '@mui/material';
 
+import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import Aos from "aos"
+import 'aos/dist/aos.css'
+import { useEffect } from 'react';
+
 interface MainProps {
   posts: ReadonlyArray<string>;
   title: string;
 }
 
 export default function Main(props: MainProps) {
+  useEffect(()=>{
+    Aos.init({duration: 1500})
+    Aos.init({
+      disable: function() {
+        var maxWidth = 800;
+        return window.innerWidth < maxWidth;
+      }
+    });
+}, [])
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const { title } = props;
 
   return (
@@ -45,7 +65,7 @@ export default function Main(props: MainProps) {
                 Membership
               </Typography>
 
-              <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: '2rem' }}>
+              <Box sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', marginTop: '2rem', gap: isMobile ? '2rem' : 0 }}>
 
                 {/* Membership Card 1 */}
                 <Box sx={{ textDecoration: 'none' }}>
@@ -128,7 +148,7 @@ export default function Main(props: MainProps) {
                 Benefits
               </Typography>
 
-              <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: '2rem' }}>
+              <Box sx={{ display: 'flex',flexDirection: isMobile ? 'column' : 'row', marginTop: '2rem', gap: isMobile ? '2rem' : 0  }}>
 
                 {/* Benefits Card 1 */}
                 <Box sx={{ textDecoration: 'none' }}>

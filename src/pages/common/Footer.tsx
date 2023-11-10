@@ -3,24 +3,41 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { Grid } from '@mui/material';
 import { useNavigate } from 'react-router-dom'
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import { useState } from 'react';
+import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
-
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, 25%)',
+    width: 500,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    borderRadius: '1rem',
+    boxShadow: 24,
+   
+    
+  };
 
 const footerLinks = [
     {
         link: "/"
     },
     {
-        link: "https://www.philhealth.gov.ph/about_us/map/regional.htm"
+        link: "/contact-us"
     },
     {
-        link: "https://www.philhealth.gov.ph/sitemap.html"
+        link: "/sitemap"
     },
     {
-        link: "https://www.philhealth.gov.ph/#?w=500"
+        link: ""
     },
     {
-        link: "https://www.philhealth.gov.ph/privacy/"
+        link: "/privacy-notice"
     },
 ]
 
@@ -31,7 +48,8 @@ const footerLinksStyles = {
     fontWeight: '300',
     textDecoration: 'none',
     ":hover": {
-        textDecoration: 'underline',
+        textDecoration: 'none',
+        cursor: 'pointer'
     }
 }
 
@@ -67,25 +85,30 @@ const footerSocials = [
 
 
 const Footer = () => {
-    
+const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const navigate = useNavigate();
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   
   return (
     <AppBar position="static" sx={{ backgroundColor: 'rgb(20,59,10)'}}>
 
         <Grid container>
 
-            <Grid md={7} >
-                <Box pt={10} px={8} width={250}>
+            <Grid md={7} xs={12}>
+            <Box pt={isMobile ? 10 : 10} px={isMobile ? 8 : 8} width={isMobile ? '100%' : 250}>
                     <a style={{ cursor: 'pointer'}} onClick={() => navigate('/')}>
                         <Typography variant='h2' 
                                     data-aos="fade-up" 
                                     sx={{ 
                                         fontFamily: 'Poppins', 
-                                        fontSize: 50, 
+                                        fontSize: isMobile ? 36 : 50,
                                         color: 'white', 
                                         fontWeight: 600, 
-                                        borderBottom: '3px solid white'
+                                        textDecoration: 'underline'
                                     }}>
                                 PhilHealth
                         </Typography>
@@ -102,36 +125,64 @@ const Footer = () => {
                         <span className="material-symbols-outlined">phone_iphone</span><strong style={{ fontWeight: 600, fontSize: 20}}> Text:</strong> <i>"PHICcallback [space] Mobile No. or Metro Manila landline [space] details of your concern"</i> and we will call you during office hours, weekdays only. 
                         </p> 
                     </Typography>
-                    {/* <Typography ml={2} mb={2} mt={-1} variant='h2' sx={{ fontFamily: 'Poppins', fontSize: 13, fontWeight: 400}}>(Callback requests will expire after 72 hours.)</Typography> */}
+                   
                     <Typography ml={2} mb={2} mt={-1} variant='h2' data-aos="fade-up"  sx={{ fontFamily: 'Poppins', fontSize: 20, fontWeight: 600}}>
                         <span className="material-symbols-outlined">phone_in_talk</span> Call Center Hotline: 84417442 (PHIC)
                     </Typography>
-                    <Typography ml={2} mb={2} mt={-1} variant='h2' data-aos="fade-up" sx={{ fontFamily: 'Poppins', fontSize: 20, fontWeight: 400}}>
+                    <Typography ml={2} mb={2} mt={-1} variant='h2' sx={{ fontFamily: 'Poppins', fontSize: 20, fontWeight: 400}}>
                     <p> <span className="material-symbols-outlined">mail</span> <strong>Email:</strong> <u>actioncenter@philhealth.gov.ph</u> </p> 
                     </Typography>
-                    {/* <Typography ml={2} mb={2} mt={-1} variant='h2' sx={{ fontFamily: 'Poppins', fontSize: 13, fontWeight: 400}}>(Self-help only; agent assistance temporarily not available)</Typography> */}
+                    
                     
 
                 </Box>
             </Grid>
 
-            <Grid md={5}>
-                <Box py={10} px={8}>
-                    <Typography variant='h2' data-aos="fade-up"  sx={{ fontFamily: 'Poppins', fontSize: 30, fontWeight: 500, mt: 3.5}}>Links</Typography>
+            <Grid md={5} xs={12} sx={{marginTop: isMobile ? '-5rem' : 0}}>
+                <Box py={isMobile ? 6 : 10} px={isMobile ? 8 : 8}>
+                    <Typography variant='h2' data-aos="fade-up"  sx={{ fontFamily: 'Poppins', fontSize: isMobile ? 24 : 30, fontWeight: 500, mt: isMobile ? 1 : 3.5}}>Links</Typography>
                 </Box>
 
-                <Box sx={{ display: 'flex', flexDirection: 'row', gap: '10rem'}}>
+                <Box sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '10rem', }}>
                     {/* FOOTER LINKS */}
-                    <Box mt={-3.5} pl={10} sx={{ display: 'flex', flexDirection: 'column', gap: '.3rem'}}>
+                    <Box mt={-3.5} pl={10} sx={{ display: 'flex', flexDirection: 'column', gap: '.3rem', marginBottom: isMobile ? '-15rem' : 0, zIndex: 1000}}>
                         <Typography data-aos="fade-up" variant='h6'> <a href={footerLinks[0].link} style={footerLinksStyles}> Home </a></Typography>
-                        <Typography data-aos="fade-up" variant='h6'> <a href={footerLinks[1].link} target="_blank" rel="noreferrer" style={footerLinksStyles} > Contact Us </a></Typography>
-                        <Typography data-aos="fade-up" variant='h6'> <a href={footerLinks[2].link} target="_blank" rel="noreferrer"style={footerLinksStyles}> Sitemap </a></Typography>
-                        <Typography data-aos="fade-up" variant='h6'> <a href={footerLinks[3].link} target="_blank" rel="noreferrer"style={footerLinksStyles}> Disclaimer </a></Typography>
-                        <Typography data-aos="fade-up" variant='h6'> <a href={footerLinks[4].link} target="_blank" rel="noreferrer" style={footerLinksStyles}> Privacy Notice </a></Typography>
+                        <Typography data-aos="fade-up" variant='h6'> <a href={footerLinks[1].link} rel="noreferrer" style={footerLinksStyles} > Contact Us </a></Typography>
+                        <Typography data-aos="fade-up" variant='h6'> <a href={footerLinks[2].link} target='_blank' rel="noreferrer" style={footerLinksStyles}> Sitemap </a></Typography>
+                        <Typography data-aos="fade-up" onClick={handleOpen} sx={footerLinksStyles}>Disclaimer</Typography>
+                            <Modal open={open} onClose={handleClose} aria-labelledby="modal-modal-title" aria-describedby="modal-modal-description">
+
+                            <Box data-aos="zoom in">    
+                                <Box sx={{...style, width: isMobile? 300 : 500, left: isMobile? '45%' : '50%' }} >
+                                    <Typography
+                                        id="modal-modal-title"
+                                        variant="h6"
+                                        component="h2"
+                                        fontFamily={'Poppins'}
+                                        bgcolor={'rgb(20,59,10)'}
+                                        color={'white'}
+                                        mt={0}
+                                        padding={4}
+                                        sx={{ borderTopLeftRadius: '.75rem', borderTopRightRadius: '.75rem'}}
+                                    >
+                                        Disclaimer
+                                    </Typography>
+                                    <Typography id="modal-modal-description" sx={{ mt: 2 }} fontFamily={'Poppins'} padding={3}>
+                                        The PhilHealth Logo, Photographs and information on this Web Site may not be reproduced, copied, or downloaded in any form or by any means -- graphic, electronic, or mechanical, including recording, taping, photocopying, or information storage and retrieval systems -- for use in illegal, damaging or pornographic material.
+                                    </Typography>
+                                    <Typography id="modal-modal-description" sx={{ mt: 0 }} fontFamily={'Poppins'} padding={3}>
+                                        But PhilHealth information may be used for educational or informative purposes and may be reproduced, copied, or downloaded without the written permission from PhilHealth.
+                                    </Typography>
+                                </Box>
+                            </Box>
+
+
+                            </Modal>
+                        <Typography  variant='h6'> <a href={footerLinks[4].link} style={footerLinksStyles}> Privacy Notice </a></Typography>
                     </Box>
 
                     {/* FOOTER BADGES */}
-                    <Box sx={{ display: 'flex', flexDirection: 'column', marginTop: '-1rem'}}>
+                    <Box sx={{ display: isMobile ? 'none' : 'flex', flexDirection: isMobile ? 'row':'column', marginTop: '-1rem', marginBottom: isMobile ? '-3rem' : 0 }}>
                         <a href={footerBadges[0].link} target='_blank' rel="noreferrer">
                             <img src={footerBadges[0].image} width={50} data-aos="fade-left" alt='Transparency' />
                         </a> 
@@ -173,7 +224,7 @@ const Footer = () => {
         </Box>
         
         <Box py={2} sx={{ backgroundColor: 'rgb(17,37,15)'}}>
-            <Typography variant='body2' style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Poppins', fontSize: 12, marginBottom: 2}}>
+            <Typography variant='body2' textAlign={'center'} style={{ display: 'flex', justifyContent: 'center', fontFamily: 'Poppins', fontSize: isMobile ? 10 : 12, marginBottom: 2}}>
                 © 2014 Philippine Health Insurance Corporation | Citystate Centre, 709 Shaw Boulevard 1603 Pasig City | Action Center 8441-7442
             </Typography>
         </Box>

@@ -12,6 +12,13 @@ import Main from './Main';
 import Sidebar from './Sidebar';
 import { post } from './blog-posts';
 
+import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import Aos from "aos"
+import 'aos/dist/aos.css'
+import { useEffect } from 'react';
+
 const mainFeaturedPost = {
   title: 'Contact Information',
   description:
@@ -67,15 +74,14 @@ const sidebar = {
   description:
     'About Us section page of PhilHealth website.',
   archives: [
-    { title: 'R.A. 7875 and IRR', url: '#' },
-    { title: 'R.A. 9241 and IRR', url: '#' },
-    { title: 'R.A. 10606', url: '#' },
-    { title: 'Revised IRR of the National Health Insurance Act of 2013 (R.A. 7875 as amended by R.A. 9241 and 10606)', url: '#' },
-    { title: 'R.A. 11223 (Universal Health Care Act)', url: '#' },
-    { title: 'September 1999', url: '#' },
-    { title: 'UHC-IRR', url: '#' },
-    { title: 'IRR of R.A. 11228', url: '#' },
-    { title: 'PhilHealth Rules On Administrative Cases (PROAC) Involving Health Care Providers, Members And PhilHealth Employees', url: '#' },
+    { title: 'R.A. 7875 and IRR', url: 'https://www.philhealth.gov.ph/about_us/ra7875.pdf' },
+    { title: 'R.A. 9241 and IRR', url: 'https://www.philhealth.gov.ph/about_us/ra9241.pdf' },
+    { title: 'R.A. 10606', url: 'https://www.philhealth.gov.ph/about_us/ra10606.pdf' },
+    { title: 'Revised IRR of the National Health Insurance Act of 2013 (R.A. 7875 as amended by R.A. 9241 and 10606)', url: 'https://www.philhealth.gov.ph/about_us/IRR_NHIAct_2013.pdf' },
+    { title: 'R.A. 11223 (Universal Health Care Act)', url: 'https://www.philhealth.gov.ph/about_us/RA11223_UHC.pdf' },
+    { title: 'UHC-IRR', url: 'https://www.philhealth.gov.ph/about_us/UHC-IRR_Signed.pdf' },
+    { title: 'IRR of R.A. 11228', url: 'https://www.philhealth.gov.ph/about_us/IRR_RA11228.pdf' },
+    { title: 'PhilHealth Rules On Administrative Cases (PROAC) Involving Health Care Providers, Members And PhilHealth Employees', url: 'https://www.philhealth.gov.ph/about_us/AnnexA_PBRNo2571-PROAC.pdf' },
   ],
   social: [
     { name: 'GitHub', icon: GitHubIcon },
@@ -111,9 +117,22 @@ const sidebar = {
 const defaultTheme = createTheme();
 
 export default function Blog() {
+
+  useEffect(()=>{
+    Aos.init({duration: 1500})
+    Aos.init({
+      disable: function() {
+        var maxWidth = 800;
+        return window.innerWidth < maxWidth;
+      }
+    });
+}, [])
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   return (
 
-    <div style={{ backgroundColor: 'white', paddingTop: '5rem', margin: '20px'}}>
+    <div style={{ backgroundColor: 'white', paddingTop: '5rem', margin: '20px', borderRadius: '1rem', paddingBottom: isMobile ? '2rem' : 0}}>
        <ThemeProvider theme={defaultTheme}>
         <CssBaseline />
 

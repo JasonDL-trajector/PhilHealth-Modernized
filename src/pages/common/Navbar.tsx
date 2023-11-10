@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,8 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { useNavigate } from 'react-router-dom'
-import { Link } from '@mui/material';
+import { Drawer, Link } from '@mui/material';
 
 const pages = [
   {
@@ -39,88 +39,78 @@ const pages = [
   },
 ];
 
-const routes = ['/', '/about-us', '/members', '/our-partners', '/online-services', '/downloads']
-  
 const Navbar = () => {
-
   const navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
+  const location = useLocation();
+  const [isDrawerOpen, setDrawerOpen] = React.useState(false);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
+  const handleOpenNavMenu = () => {
+    setDrawerOpen(true);
   };
 
   const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+    setDrawerOpen(false);
   };
 
   const navbarStyles = {
-    my: 2, 
-    color: 'white', 
-    display: 'block', 
-    fontFamily: 'Poppins', 
-    ":hover": { 
+    my: 2,
+    color: 'white',
+    display: 'block',
+    fontFamily: 'Poppins',
+    ":hover": {
       backgroundColor: "white",
       color: "rgb(20,59,10)",
       transform: "scale(1.2)",
       transition: "transform .3s"
-    } 
-  }
+    }
+  };
+
   return (
-    <AppBar position="fixed" 
-          className='navbar' 
-          sx={{ 
-            backgroundColor: 'rgb(20,59,10)', 
-            top: 100,
-            left: 0,
-            right: 0,
-            zIndex: 1000
-          }}>
-    <Container maxWidth="xl">
+    <AppBar position="relative" className='navbar' sx={{
+      backgroundColor: 'rgb(20,59,10)',
+      position: 'relative',
+    }}>
+      <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
             >
               <MenuIcon />
             </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
+            <Drawer
+              anchor="bottom"  // You can customize the anchor as needed
+              open={isDrawerOpen}
               onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
+              // style={{ backgroundColor: 'rgb(20,59,10)'}}
+              
             >
-              {pages.map((page) => (
-                
-                <MenuItem key={page.title} onClick={handleCloseNavMenu}>
-                  <Link href={page.url} textAlign="center" fontFamily={'Poppins'}>{page.title}</Link>
-                </MenuItem>
-              ))}
-            </Menu>
+              <div
+                role="presentation"
+                onClick={handleCloseNavMenu}
+                onKeyDown={handleCloseNavMenu}
+                style={{ backgroundColor: 'rgb(20,59,10)'}}
+              >
+                {pages.map((page) => (
+                  <MenuItem key={page.title} onClick={handleCloseNavMenu} style={{ backgroundColor: 'rgb(20,59,10)'}}>
+                    <Link href={page.url} textAlign="center" fontFamily={'Poppins'} color={'rgb(255,255,255)'}>
+                      {page.title}
+                    </Link>
+                  </MenuItem>
+                ))}
+              </div>
+            </Drawer>
           </Box>
-        
-          <Typography
+
+          <Link
+            href='/'
             variant="h5"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            // href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -133,24 +123,30 @@ const Navbar = () => {
             }}
           >
             PHILHEALTH
-          </Typography>
-          
-          <Box sx={{ 
-            flexGrow: 1, 
-            display: { xs: 'none', md: 'flex' },
-            justifyContent: 'center', 
-            gap: '3rem'
-            }}>
-            
-              <Button key={pages[0].title} onClick={() => navigate(routes[0])} sx={navbarStyles}> {pages[0].title} </Button>
-              <Button key={pages[1].title} onClick={() => navigate(routes[1])} sx={navbarStyles}> {pages[1].title} </Button>
-              <Button key={pages[2].title} onClick={() => navigate(routes[2])} sx={navbarStyles}> {pages[2].title} </Button>
-              <Button key={pages[3].title} onClick={() => navigate(routes[3])} sx={navbarStyles}> {pages[3].title} </Button>
-              <Button key={pages[4].title} onClick={() => navigate(routes[4])} sx={navbarStyles}> {pages[4].title} </Button>
-              <Button key={pages[5].title} onClick={() => navigate(routes[5])} sx={navbarStyles}> {pages[5].title} </Button>
-          
-          </Box>
+          </Link>
 
+          <Box sx={{
+            flexGrow: 1,
+            display: { xs: 'none', md: 'flex' },
+            justifyContent: 'center',
+            gap: '3rem'
+          }}>
+            {pages.map((page, index) => (
+              <Button
+                key={page.title}
+                onClick={() => navigate(page.url)}
+                sx={{
+                  ...navbarStyles,
+                  backgroundColor: location.pathname === page.url ? 'white' : 'transparent',
+                  color: location.pathname === page.url ? 'rgb(20,59,10)' : 'white',
+                  transform: location.pathname === page.url ? 'scale(1)' : 'scale(1)',
+                  transition: "transform .3s"
+                }}
+              >
+                {page.title}
+              </Button>
+            ))}
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

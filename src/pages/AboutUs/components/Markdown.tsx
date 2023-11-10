@@ -17,7 +17,8 @@ const options = {
         variant: 'h4',
         component: 'h1',
         fontFamily: 'Poppins',
-        fontWeight: '600'
+        fontWeight: '600',
+        textAlign: 'left'
       },
     },
     h2: {

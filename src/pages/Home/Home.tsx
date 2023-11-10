@@ -21,6 +21,12 @@ const Home = () => {
 
   useEffect(()=>{
     Aos.init({duration: 1500})
+    Aos.init({
+      disable: function() {
+        var maxWidth = 800;
+        return window.innerWidth < maxWidth;
+      }
+    });
 }, [])
 
   const [articles, setArticles] = useState<Array<Article>>([]);

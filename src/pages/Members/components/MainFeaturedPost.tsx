@@ -5,6 +5,13 @@ import Grid from '@mui/material/Grid';
 import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 
+import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import Aos from "aos"
+import 'aos/dist/aos.css'
+import { useEffect } from 'react';
+
 interface MainFeaturedPostProps {
   post: {
     description: string;
@@ -16,6 +23,19 @@ interface MainFeaturedPostProps {
 }
 
 export default function MainFeaturedPost(props: MainFeaturedPostProps) {
+
+  useEffect(()=>{
+    Aos.init({duration: 1500})
+    Aos.init({
+      disable: function() {
+        var maxWidth = 800;
+        return window.innerWidth < maxWidth;
+      }
+    });
+}, [])
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const { post } = props;
 
   return (
@@ -29,11 +49,11 @@ export default function MainFeaturedPost(props: MainFeaturedPostProps) {
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center',
         backgroundImage: `url(${post.image})`,
-        height: '20rem'
+        height: isMobile ? '5rem' : '20rem'
       }}
     >
       {/* Increase the priority of the hero background image */}
-      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} height={700}/>}
+      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
       <Box
         sx={{
           position: 'absolute',

@@ -16,7 +16,13 @@ const AboutUs = () => {
 
   useEffect(()=>{
     Aos.init({duration: 1500})
-  }, [])
+    Aos.init({
+      disable: function() {
+        var maxWidth = 800;
+        return window.innerWidth < maxWidth;
+      }
+    });
+}, [])
 
   return (
     <div className='App'
@@ -30,7 +36,7 @@ const AboutUs = () => {
         <Navbar />
       </div>
 
-      <div style={{ marginTop: '10.5rem'}}>
+      <div style={{ marginTop: '-2rem', borderRadius: '3rem'}}>
         <Blog />
       </div>
 

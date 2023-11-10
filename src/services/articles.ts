@@ -11,6 +11,6 @@ export const getArticles = async () => {
     const data: Array<Article> = await res.json();
     return data;
   })
-  return articles;
+  return articles;  
 }
 

@@ -26,7 +26,7 @@ const items = [
 const ImageCarousel = () => {
 
   return ( 
-  <div style={{marginTop: '10rem', marginBottom: '-1rem'}}>
+  <div style={{marginBottom: '-1rem'}}>
     <Carousel 
       autoPlay={true} 
       emulateTouch={true} 

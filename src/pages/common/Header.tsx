@@ -7,6 +7,8 @@ import Tooltip from '@mui/material/Tooltip';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const appBarStyle = {
   top: 0,
@@ -62,6 +64,9 @@ const settings = ['Profile', 'Account', 'Logout'];
 
 const Header = () => {
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
 
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -73,7 +78,7 @@ const Header = () => {
   };
 
   return (
-    <AppBar position="fixed" className='header' style={appBarStyle}>
+    <AppBar position="relative" className='header' style={appBarStyle}>
       <div style={{
         display: 'flex',
         flexDirection: 'row',
@@ -86,7 +91,7 @@ const Header = () => {
                 src={`https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Philippine_Health_Insurance_Corporation_%28PhilHealth%29.svg/1200px-Philippine_Health_Insurance_Corporation_%28PhilHealth%29.svg.png`}
                 width={220}
                 height={80}
-                
+                style={{ width: isMobile ? 140 : 220, height: isMobile ? 60 : 80}}
                 alt={'PhilHealth'}
                 loading="lazy"
               />
@@ -99,6 +104,7 @@ const Header = () => {
             <img
               src={`https://www.philhealth.gov.ph/images/bagong_pilipinas_logo3.png`}
               alt={'PhilHealth'}
+              style={{ width: isMobile ? 80 : 90}}
               loading="lazy"  
             />
           </Toolbar>

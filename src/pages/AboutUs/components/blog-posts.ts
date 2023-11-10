@@ -1,7 +1,7 @@
 export const post = `
 # Profile
 
-_November 6, 2023 by [Anon](/)_
+_November 6, 2023 by [Anon](#)_
 
 ## HISTORY
 

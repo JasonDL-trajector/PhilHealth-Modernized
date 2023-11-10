@@ -31,7 +31,7 @@ const Downloads = () => {
         <Navbar />
       </div>
 
-      <div style={{ marginTop: '10.5rem'}}>
+      <div style={{ marginTop: '-2rem'}}>
         <Blog />
       </div>
 

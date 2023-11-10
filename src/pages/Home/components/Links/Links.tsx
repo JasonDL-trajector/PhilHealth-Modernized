@@ -2,6 +2,11 @@ import { Box, Grid, Typography } from "@mui/material";
 import { useState, useEffect } from 'react'
 import { LinksURL, getLinks } from '../../../../services/links'
 import { LinksBanner, getLinksBanner } from '../../../../services/links'
+import useTheme from '@mui/material/styles/useTheme';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
+import Aos from "aos"
+import 'aos/dist/aos.css'
 
 const anchorStyles = {
   ":hover": { 
@@ -29,6 +34,19 @@ const labelStyles = {
 
 const Links = () => {
 
+  useEffect(()=>{
+    Aos.init({duration: 1500})
+    Aos.init({
+      disable: function() {
+        var maxWidth = 800;
+        return window.innerWidth < maxWidth;
+      }
+    });
+}, [])
+
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const [links, setLinks] = useState<Array<LinksURL>>([]);
   const [linksBanner, setLinksBanner] = useState<Array<LinksBanner>>([]);
 
@@ -53,44 +71,45 @@ const Links = () => {
             fontWeight: 600,
             color: 'rgb(20,59,10)',
             display: 'flex',
-            justifyContent: 'center'
+            justifyContent: 'center',
+            fontSize: isMobile ? 35 : 45
           }}>
           QUICK LINKS
         </Typography>
       </Box>
 
-      <Box mt={10} px={8} sx={{ display: 'flex', flexDirection: 'row', gap: '12rem'}}>
+      <Box mt={10} px={8} sx={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', gap: '12rem'}}>
 
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
           
           {/* TOP ROW */}
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: '2rem' }}>
+          <Box sx={{ display: 'flex', flexDirection: isMobile? 'column' : 'row', gap: '2rem' }}>
             {linksBanner.slice(0, 2).map((link, index) => (
               <Box key={index} sx={anchorStyles}>
                 <a href={link.links} target="_blank" rel="noreferrer">
-                  <img data-aos="zoom-in-up" src={link.image} style={imagesStyles} alt={link.image} />
+                  <img data-aos="zoom-in-up" src={link.image} style={{...imagesStyles, width: isMobile ? '20rem' : '25rem'}} alt={link.image} />
                 </a>
               </Box>
             ))}
           </Box>
 
           {/* MID ROW */}
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: '2rem' }}>
+          <Box sx={{ display: 'flex', flexDirection: isMobile? 'column' : 'row', gap: '2rem' }}>
             {linksBanner.slice(2, 4).map((link, index) => (
               <Box key={index} sx={anchorStyles}>
                 <a href={link.links} target="_blank" rel="noreferrer">
-                  <img data-aos="zoom-in-up" src={link.image} style={imagesStyles} alt={link.image} />
+                  <img data-aos="zoom-in-up" src={link.image} style={{...imagesStyles, width: isMobile ? '20rem' : '25rem'}} alt={link.image} />
                 </a>
               </Box>
             ))}
           </Box>
 
           {/* BOTTOM ROW */}
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: '2rem', marginLeft: '25%' }}>
+          <Box sx={{ display: 'flex', flexDirection: 'row', gap: '2rem', marginLeft: isMobile ? '0%' : '25%' }}>
             {linksBanner.slice(4, 5).map((link, index) => (
               <Box key={index} sx={anchorStyles}>
                 <a href={link.links} target="_blank" rel="noreferrer">
-                  <img data-aos="zoom-in-up" src={link.image} style={imagesStyles} alt={link.image} />
+                  <img data-aos="zoom-in-up" src={link.image} style={{...imagesStyles, width: isMobile ? '20rem' : '25rem'}} alt={link.image} />
                 </a>
               </Box>
             ))}
